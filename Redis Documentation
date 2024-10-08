@@ -1,0 +1,28 @@
+Redis Installation 
+
+Two Way :
+1.) Redis 
+2.) Redis Stack With Multiple Modules
+
+-> Redis Stack Contains redis 
+  in the redis-stack : redis & redisInsight (Local Installation)
+         redis-stack-server:only redis Modules (Production)
+
+Redis stack contains Modules:
+ 1.) RediSearch
+ 2.) RedisJSON
+ 3.) RedisGraph
+ 4.) RedisTimeSeries
+ 5.) RedisBloom 
+ 
+Documentation on Installation Through Docker 
+ https://hub.docker.com/r/redis/redis-stack-server
+
+Documentation on Installation Through manually
+ https://redis.io/docs/latest/operate/oss_and_stack/install/install-redis/  (Redis)
+ 
+Configure Parameters 
+ https://redis.io/docs/latest/develop/interact/search-and-query/basic-constructs/configuration-parameters/
+
+
+

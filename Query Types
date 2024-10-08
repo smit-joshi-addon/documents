@@ -1,0 +1,56 @@
+In Spring Boot, queries are commonly associated with database access using Spring Data JPA or other data access technologies. There are several types of queries that you can use in Spring Boot, depending on your needs. Here are some common query types:
+
+1. **JPQL (Java Persistence Query Language):**
+   - JPQL is a query language defined as part of the Java Persistence API (JPA) standard.
+   - It allows you to express queries using entity classes and their fields, rather than native SQL queries.
+   - Example:
+     ```java
+     @Query("SELECT c FROM Customer c WHERE c.lastName = :lastName")
+     List<Customer> findByLastName(@Param("lastName") String lastName);
+     ```
+
+2. **Native Queries:**
+   - Spring Data JPA supports native SQL queries when you need to execute database-specific queries.
+   - Example:
+     ```java
+     @Query(value = "SELECT * FROM customers WHERE last_name = :lastName", nativeQuery = true)
+     List<Customer> findByLastName(@Param("lastName") String lastName);
+     ```
+
+3. **Named Queries:**
+   - Named queries are predefined queries with a name assigned to them, which can be referenced in your repository interface.
+   - Example:
+     ```java
+     @Query(name = "Customer.findByLastName")
+     List<Customer> findByLastName(@Param("lastName") String lastName);
+     ```
+
+4. **Derived Queries:**
+   - Spring Data JPA can derive queries from the method names defined in your repository interface.
+   - Example:
+     ```java
+     List<Customer> findByLastName(String lastName);
+     ```
+
+5. **Query Methods with @Query Annotation:**
+   - You can use the `@Query` annotation on repository methods to specify custom queries.
+   - Example:
+     ```java
+     @Query("SELECT c FROM Customer c WHERE c.age >= :minAge")
+     List<Customer> findByMinAge(@Param("minAge") int minAge);
+     ```
+
+6. **Projection Queries:**
+   - Projection queries allow you to fetch only a subset of the fields from an entity.
+   - Example:
+     ```java
+     interface NameOnly {
+         String getFirstName();
+         String getLastName();
+     }
+
+     @Query("SELECT c.firstName as firstName, c.lastName as lastName FROM Customer c")
+     List<NameOnly> findNamesOnly();
+     ```
+
+These are just some examples, and Spring Boot provides a flexible and powerful mechanism for handling different types of queries. The choice of which type to use depends on your specific use case and requirements.
